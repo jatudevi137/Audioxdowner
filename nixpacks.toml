@@ -1,10 +1,11 @@
 [phases.setup]
-# Installiere Python 3.11 EXPLIZIT + ffmpeg
-nixPkgs = ["python311", "ffmpeg"]
+# Bringt Python inkl. pip + ffmpeg
+nixPkgs = ["python311Full", "ffmpeg"]
 
 [phases.install]
-# Pip aktualisieren und Abhängigkeiten installieren
+# Falls pip doch fehlt, installieren wir es via ensurepip, dann Requirements
 cmds = [
-  "python3 -m pip install --upgrade pip",
+  "python3 -m ensurepip --upgrade",
+  "pip3 install --upgrade pip",
   "pip3 install -r requirements.txt"
 ]
