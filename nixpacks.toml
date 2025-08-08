@@ -7,8 +7,10 @@ nixPkgs = [
 ]
 
 [phases.install]
-# Nixpacks installiert automatisch alle Python-Pakete aus requirements.txt
-cmds = []
+# Erzwinge Installation der Abhängigkeiten
+cmds = [
+    "pip install --no-cache-dir -r requirements.txt"
+]
 
 [phases.build]
 # Kein spezieller Build-Schritt nötig
