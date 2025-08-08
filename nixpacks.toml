@@ -7,15 +7,11 @@ nixPkgs = [
 
 [phases.install]
 cmds = [
-    # Virtuelle Umgebung anlegen
+    # Virtuelle Umgebung anlegen und direkt pip installieren
     "python3 -m venv /app/venv",
-    # Aktivieren
-    ". /app/venv/bin/activate",
-    # Pip Upgrade mit Break-Flag
-    "pip install --upgrade pip --break-system-packages",
-    # Requirements installieren
-    "pip install -r requirements.txt --break-system-packages"
+    "/app/venv/bin/pip install --upgrade pip --break-system-packages",
+    "/app/venv/bin/pip install -r requirements.txt --break-system-packages"
 ]
 
 [start]
-cmd = ". /app/venv/bin/activate && python3 main.py"
+cmd = "/app/venv/bin/python main.py"
