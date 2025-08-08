@@ -126,3 +126,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+cookiefile = get_cookiefile()
+if cookiefile:
+    opts["cookiefile"] = cookiefile
