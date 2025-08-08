@@ -1,10 +1,19 @@
 [phases.setup]
-# Installiert Python, pip und ffmpeg direkt aus Nix
-nixPkgs = ["python311Full", "python311Packages.pip", "ffmpeg"]
+# Installiere Python 3.11, pip und ffmpeg direkt über Nix
+nixPkgs = [
+    "python311Full",
+    "python311Packages.pip",
+    "ffmpeg"
+]
 
 [phases.install]
-# Pip ist nun garantiert verfügbar
-cmds = [
-  "pip install --upgrade pip",
-  "pip install -r requirements.txt"
-]
+# Nixpacks installiert automatisch alle Python-Pakete aus requirements.txt
+cmds = []
+
+[phases.build]
+# Kein spezieller Build-Schritt nötig
+cmds = []
+
+[start]
+# Startbefehl für deinen Telegram Bot
+cmd = "python3 main.py"
