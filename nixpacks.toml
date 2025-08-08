@@ -1,5 +1,4 @@
 [phases.setup]
-# Installiere Python 3.11, pip und ffmpeg direkt über Nix
 nixPkgs = [
     "python311Full",
     "python311Packages.pip",
@@ -7,15 +6,16 @@ nixPkgs = [
 ]
 
 [phases.install]
-# Erzwinge Installation der Abhängigkeiten
 cmds = [
-    "pip install --no-cache-dir -r requirements.txt"
+    # Virtuelle Umgebung anlegen
+    "python3 -m venv /app/venv",
+    # Aktivieren
+    ". /app/venv/bin/activate",
+    # Pip Upgrade mit Break-Flag
+    "pip install --upgrade pip --break-system-packages",
+    # Requirements installieren
+    "pip install -r requirements.txt --break-system-packages"
 ]
 
-[phases.build]
-# Kein spezieller Build-Schritt nötig
-cmds = []
-
 [start]
-# Startbefehl für deinen Telegram Bot
-cmd = "python3 main.py"
+cmd = ". /app/venv/bin/activate && python3 main.py"
