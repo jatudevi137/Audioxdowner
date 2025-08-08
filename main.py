@@ -58,3 +58,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+YDL_OPTS = {
+    "quiet": True,
+    "format": "bestaudio/best",
+    "noplaylist": True,
+    "outtmpl": "%(title).60s.%(ext)s",
+    "cookiefile": "cookies.txt",  # <--- NEU
+    "postprocessors": [
+        {
+            "key": "FFmpegExtractAudio",
+            "preferredcodec": "mp3",
+            "preferredquality": "192",
+        }
+    ],
+}
